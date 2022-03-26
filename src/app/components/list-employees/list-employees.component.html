@@ -1,0 +1,34 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-xl-between">
+                <span class="h3 ">Lista de Docentes</span>
+                <button class="btn btn-dark btn-lg rout" routerLink='/create-employees'>Agregar +</button>
+            </div>
+            <h5 class="mt-30px" *ngIf='!employees.length'>No hay datos para mostrar</h5>
+            <table *ngIf='employees.length' class="table table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Documento</th>
+                        <th>Salario</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees">
+                        <td>{{employee.name}}</td>
+                        <td>{{employee.lastName}}</td>
+                        <td>{{employee.doc}}</td>
+                        <td>{{employee.salary | currency}}</td>
+                        <td>
+                            <i class="fas fa-edit text-info " [routerLink]="['/update-employees/', employee.id]"></i>
+                            <i (click)="deleteEmployee(employee.id)" class="fas fa-trash text-danger p-2"></i>
+                        </td>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
